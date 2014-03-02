@@ -73,6 +73,12 @@ git clone https://github.com/diogoosorio/zidisha-vagrant.git && cd zidisha-vagra
 vagrant up
 ```
 
+If you get an error during the provisioning, re-run:
+
+```bash
+vagrant provision
+```
+
 And add an entry to your **hosts** file:
 
 ```bash
