@@ -1,0 +1,26 @@
+---
+
+- name: Update apt-cache
+  apt: update_cache=yes cache_valid_time=3600
+  sudo: yes
+
+- name: Upgrade the OS
+  apt: upgrade=yes
+  sudo: yes
+
+- name: Install common packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+      - build-essential
+      - git
+      - tree
+      - vim
+      - curl
+      - wget
+      - zip
+      - rsync
+
+- name: Add Github's fingerprint to the known_hosts file
+  copy: src=known_hosts dest=~/.ssh/known_hosts
+
