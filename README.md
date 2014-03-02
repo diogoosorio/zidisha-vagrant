@@ -112,11 +112,13 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
   vagrant up --no-provision
   ```
 
-1.  SSH into the machine:
+1.  SSH into the machine. You'll probably use **PuttY** or something similar. To simplify, use the following information:
 
-  ```bash
-  vagrant ssh
-  ```
+    * IP Address: 192.168.90.103
+    * Username: vagrant
+    * Password: vagrant
+
+1. Make sure you have an SSH-Agent running (**Pageant**, probably) and that your Github SSH key is added on the agent.
 
 1. Run the provisioning from within the VM:
 
@@ -138,6 +140,13 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
 1. You should be done! Fire up a browser and visit - http://zidisha.local/.
 
+----
+
+### Working in the project
+
+If you did a **vagrant ssh** into the machine
+
+----
 
 ## Licensing
 
