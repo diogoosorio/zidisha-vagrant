@@ -11,6 +11,8 @@ Finally, we are the world's only open-source person-to-person lending platform. 
 
 ## Bootstrapping your development environment
 
+[![xkcd automation](http://imgs.xkcd.com/comics/automation.png)](https://xkcd.com/1319/)
+
 This project aims to provide a quick and simple way for you to bootstrap a development environment for helping out the Zidisha project. It's based on [Vagrant][2] and [Ansible][3].
 
 With it, you'll be able to quickly start to contributing - it'll provide you with an Ubuntu Server development machine, with the project already configured.
@@ -138,6 +140,12 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
 1. You should be done! Fire up a browser and visit - http://zidisha.local/.
 
+
+## Licensing
+
+This project is licensed under the [Apache License 2.0][11]. Please take the time to look at (and make sure you comply with) [Zidisha's][12] licensing, before you start working.
+
+
 [1]: http://zidisha.org/                                          "Zidisha"
 [2]: http://www.vagrantup.com/                                    "Vagrant"
 [3]: http://ansible.github.io/                                    "Ansible"
@@ -148,3 +156,5 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 [8]: https://help.github.com/articles/fork-a-repo                 "Github Fork"
 [9]: provisioning/playbook.yml                                    "Playbook.yml"
 [10]: https://help.github.com/articles/using-ssh-agent-forwarding "Using ssh-agent forwarding"
+[11]: License.md                                                  "Apache License 2.0"
+[12]: https://github.com/Zidisha/zidisha/blob/master/LICENSE      "Zidisha License"
