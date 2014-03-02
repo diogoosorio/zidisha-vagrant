@@ -1,0 +1,61 @@
+---
+- name: Install required packages
+  apt: pkg={{ item }} update_cache=yes
+  sudo: yes
+  with_items:
+    - apache2
+    - libapache2-mod-php5
+    - php5
+    - php5-dev
+    - php5-mysql
+    - php-apc
+    - php5-xdebug
+    - php-pear
+    - sendmail
+
+- name: Clone Zidisha repository
+  git: dest=/workspace/zidisha.local repo={{ git.repository }} update=no
+
+- name: Enable rewrite module
+  sudo: yes
+  command: a2enmod rewrite expires
+
+- name: Create the logging directory
+  file: path={{ item }} owner=www-data group=www-data state=directory
+  sudo: yes
+  with_items:
+      - /var/log/zidisha.local
+      - /var/log/zidisha.local/app_logs
+      - /var/log/zidisha.local/apache2
+
+
+- name: Copy the virtualhost to the sites-available directory
+  sudo: yes
+  template: src=zidisha.local.conf.j2 dest=/etc/apache2/sites-available/zidisha.local.conf
+
+- name: Enable the virtualhost
+  sudo: yes
+  command: a2ensite zidisha.local.conf
+  notify: Restart Apache
+
+- name: Copy the constants.php file
+  template: src=constant.php.j2 dest=/workspace/zidisha.local/library/constant.php mode=0644
+
+- name: Create the zidisha_contents directory
+  file: path=/workspace/zidisha.local/zidisha_contents state=directory mode=0777
+
+- name: Symlink the app_logs into the zidisha_contents directory
+  file: src=/var/log/zidisha.local/app_logs dest=/workspace/zidisha.local/zidisha_contents/logs state=link
+
+- name: Create the Smarty cache directory
+  file: path=/tmp/zidisha.local/smarty/{{ item }} mode=0777 recurse=yes state=directory
+  with_items:
+      - cache
+      - compile
+
+- name: Symlink the smarty compilation directory
+  file: src=/tmp/zidisha.local/smarty/compile dest=/workspace/zidisha.local/extlibs/smarty/templates_c state=link
+
+- name: Symlink the smarty cache directory
+  file: src=/tmp/zidisha.local/smarty/cache dest=/workspace/zidisha.local/extlibs/smarty/cache state=link
+
