@@ -1,0 +1,134 @@
+<VirtualHost *:80>
+    ServerName {{ apache.hostname }}
+    DocumentRoot /workspace/zidisha.local
+
+    ErrorLog "/var/log/zidisha.local/apache2/error.log"
+    CustomLog "/var/log/zidisha.local/apache2/access.log" combined
+
+    RewriteEngine On
+    RewriteLog "/var/log/zidisha.local/apache2/rewrite.log"
+    RewriteLogLevel 3
+
+    <Directory /workspace/zidisha.local>
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    # TODO: Move this elsewhere and include it here...
+    <IfModule mod_expires.c>
+       ExpiresActive On
+       ExpiresDefault "access plus 10 days"
+       ExpiresByType text/css "access plus 1 week"
+       ExpiresByType text/plain "access plus 1 month"
+       ExpiresByType image/gif "access plus 1 month"
+       ExpiresByType image/png "access plus 1 month"
+       ExpiresByType image/jpeg "access plus 1 month"
+       ExpiresByType application/x-javascript "access plus 1 month"
+       ExpiresByType application/javascript "access plus 1 week"
+       ExpiresByType application/x-icon "access plus 1 year"
+    </IfModule>
+
+
+    ErrorDocument 404 https://www.zidisha.org
+
+    RewriteCond %{QUERY_STRING} (^|&)p=2(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=2&(.*) 
+    RewriteRule ^ /microfinance/lend\.html? [R=301,L]
+    RewriteRule microfinance/lend\.html(\/?)$ index.php?p=2&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=65(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=65&(.*) 
+    RewriteRule ^ /microfinance/press\.html? [R=301,L]
+    RewriteRule microfinance/press\.html(\/?)$ index.php?p=65&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=64(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=64&(.*) 
+    RewriteRule ^ /microfinance/newsletter\.html? [R=301,L]
+    RewriteRule microfinance/newsletter\.html(\/?)$ index.php?p=64&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=67(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=67&(.*) 
+    RewriteRule ^ /microfinance/intern\.html? [R=301,L]
+    RewriteRule microfinance/intern\.html(\/?)$ index.php?p=67&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=26(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=26&(.*) 
+    RewriteRule ^ /microfinance/gift-cards\.html? [R=301,L]
+    RewriteRule microfinance/gift-cards\.html(\/?)$ index.php?p=26&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=38(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=38&(.*) 
+    RewriteRule ^ /microfinance/donate\.html? [R=301,L]
+    RewriteRule microfinance/donate\.html(\/?)$ index.php?p=38&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=6(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=6&(.*) 
+    RewriteRule ^ /microfinance/contact\.html? [R=301,L]
+    RewriteRule microfinance/contact\.html(\/?)$ index.php?p=6&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=47(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=47&(.*) 
+    RewriteRule ^ /microfinance/borrow\.html? [R=301,L]
+    RewriteRule microfinance/borrow\.html(\/?)$ index.php?p=47&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=48(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=48&(.*) 
+    RewriteRule ^ /microfinance/why-zidisha\.html? [R=301,L]
+    RewriteRule microfinance/why-zidisha\.html(\/?)$ index.php?p=48&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=3(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=3&(.*) 
+    RewriteRule ^ /microfinance/how-it-works\.html? [R=301,L]
+    RewriteRule microfinance/how-it-works\.html(\/?)$ index.php?p=3&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=4(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=4&(.*) 
+    RewriteRule ^ /microfinance/faq\.html? [R=301,L]
+    RewriteRule microfinance/faq\.html(\/?)$ index.php?p=4&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=62(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=62&(.*) 
+    RewriteRule ^ /microfinance/team\.html? [R=301,L]
+    RewriteRule microfinance/team\.html(\/?)$ index.php?p=62&nr=1 [QSA]
+
+    RewriteCond %{QUERY_STRING} (^|&)p=69(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=69&(.*) 
+    RewriteRule ^ /microfinance/testimonials\.html? [R=301,L]
+    RewriteRule microfinance/testimonials\.html(\/?)$ index.php?p=69&nr=1 [QSA]
+
+
+    RewriteCond %{QUERY_STRING} (^|&)p=79(&|$)
+    RewriteCond %{QUERY_STRING} !(^|&)nr=1($|&)
+    RewriteCond %{QUERY_STRING} !(.*)p=79&(.*) 
+    RewriteRule ^ /microfinance/microfinance\.html? [R=301,L]
+    RewriteRule microfinance/microfinance\.html(\/?)$ index.php?p=79&nr=1 [QSA]
+
+
+    RewriteRule microfinance/profile/(.*)$ index.php?p=12 [QSA]
+    RewriteRule microfinance/loan/(.*)$ index.php?p=14 [QSA]
+
+
+    RewriteRule microfinance/active-loans\.html(\/?)$ index.php?p=2&t=2&s=1&row=0&pg=1&key= [QSA]
+    RewriteRule completed-loans\.html(\/?)$ index.php?p=2&t=3&s=1&row=0&pg=1&key= [QSA]
+    # For security reasons, Option followsymlinks cannot be overridden.
+    #Options +FollowSymLinks
+    Options +SymLinksIfOwnerMatch
+    RewriteEngine on
+    RewriteRule index-p-(.*)-u-(.*)-l-(.*)\.htm$ index.php?p=$1&u=$2&l=$3					
+                    
+    RewriteRule completed-loans\.html(\/?)$ index.php?p=14&u=*&l=* [QSA]
+    RewriteRule user-forum\.html(\/?)$ index.php?webtag=FORUM [QSA]
+</VirtualHost>
