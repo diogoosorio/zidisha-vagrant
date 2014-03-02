@@ -144,7 +144,7 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
 ### Working in the project
 
-If you did a **vagrant ssh** into the machine
+On your host machine, you'll find a directory named **workspace** that by now, should contain the project's files. This directory is shared with the VM, so just point your favorite IDE to that directory and start hacking! :)
 
 ----
 
