@@ -109,10 +109,8 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
   ```bash
   git clone https://github.com/diogoosorio/zidisha-vagrant.git && cd zidisha-vagrant
-  vagrant up
+  vagrant up --no-provision
   ```
-
-1. An error message will be shown during the VM boot, ignore it (Ansible is not compatible with Windows).
 
 1.  SSH into the machine:
 
@@ -124,7 +122,7 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
   ```bash
   cd /provisioning
-  sudo -E ansible -h hosts playbook.yml
+  sudo -E bash run.sh
   ```
 
 1. Edit your hosts file. Open **My Computer** and go to:
