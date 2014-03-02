@@ -10,7 +10,8 @@ Vagrant.configure("2") do |config|
   config.ssh.port = 2225
   config.vm.network :forwarded_port, guest: 22, host: 2225, id:'ssh'
   config.vm.network :private_network, ip: "192.168.90.103"
-  config.vm.synced_folder "shared", "/workspace"
+  config.vm.synced_folder "workspace", "/workspace"
+  config.vm.synced_folder "provisioning" "/provisioning"
 
   config.vm.provider "virtualbox" do |v|
       v.memory = 1024
