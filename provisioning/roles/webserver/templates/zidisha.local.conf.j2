@@ -5,13 +5,10 @@
     ErrorLog "/var/log/zidisha.local/apache2/error.log"
     CustomLog "/var/log/zidisha.local/apache2/access.log" combined
 
-    RewriteEngine On
-    RewriteLog "/var/log/zidisha.local/apache2/rewrite.log"
-    RewriteLogLevel 3
+    LogLevel warn rewrite:trace6
 
     <Directory /workspace/zidisha.local>
-        Order deny,allow
-        Allow from all
+        Require all granted
     </Directory>
 
     # TODO: Move this elsewhere and include it here...
