@@ -1,1 +1,3 @@
 \.vagrant/
+shared/*
+!shared/\.gitkeep
