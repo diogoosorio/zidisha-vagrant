@@ -25,6 +25,7 @@ Before you start, make sure you visit [Zidisha's Github project page][4].
 > * [Mac OS X](Mac OS X)
 > * [Windows](Windows)
 
+
 ### Before you start
 
 Before you start, make sure that:
@@ -52,6 +53,8 @@ In my case, it would look something like this:
         password: zidisha
 ```
 
+----
+
 ### Ubuntu
 
 You'll need to install [Virtualbox][5], [Vagrant][2] and [Ansible][3] before you start. This can trivially be done using the [APT Package Manager][6]:
@@ -78,6 +81,7 @@ echo 'zidisha.local     192.168.90.103' | sudo tee -a /etc/hosts
 
 Fire up a browser and visit - http://zidisha.local/.
 
+----
 
 ### Mac OS X
 
@@ -87,6 +91,7 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 
 **If you have any trouble, get [Virtualbox](http://virtualbox.org/) and [Vagrant](http://vagrantup.com) running on your machine and take a look at Window's instructions.**
 
+----
 
 ### Windows
 
@@ -125,7 +130,7 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
   192.168.90.103 zidisha.local
   ```
 
-* You should be done! Fire up a browser and visit - http://zidisha.local/.
+1. You should be done! Fire up a browser and visit - http://zidisha.local/.
 
 [1]: http://zidisha.org/                                          "Zidisha"
 [2]: http://www.vagrantup.com/                                    "Vagrant"
@@ -135,5 +140,5 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 [6]: https://wiki.debian.org/Apt                                  "APT"
 [7]: https://weluse.de/blog/installing-ansible-on-os-x.html       "Installing Ansible on Mac OS X"
 [8]: https://help.github.com/articles/fork-a-repo                 "Github Fork"
-[9]: blog/master/provisioning/playbook.yml                        "Playbook.yml"
+[9]: provisioning/playbook.yml                                    "Playbook.yml"
 [10]: https://help.github.com/articles/using-ssh-agent-forwarding "Using ssh-agent forwarding"
