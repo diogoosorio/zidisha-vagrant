@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: [local, vagrant]
   vars:
     apache:
       hostname: zidisha.local

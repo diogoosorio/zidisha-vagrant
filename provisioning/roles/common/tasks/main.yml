@@ -22,13 +22,6 @@
       - rsync
       - python-software-properties
 
-- name: Add Ansible apt repository
-  sudo: yes
-  apt_repository: repo='ppa:rquillo/ansible' state=present
-
-- name: Install Ansible
-  apt: pkg=ansible state=latest
-
 - name: Add Github's fingerprint to the known_hosts file
   copy: src=known_hosts dest=~/.ssh/known_hosts
 
