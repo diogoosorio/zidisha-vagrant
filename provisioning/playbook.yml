@@ -1,0 +1,18 @@
+---
+
+- hosts: vagrant
+  vars:
+    apache:
+      hostname: zidisha.local
+    git:
+        repository: "https://github.com/Zidisha/zidisha.git"
+    database:
+        host: 127.0.0.1
+        name: zidisha
+        user: zidisha
+        password: zidisha
+
+  roles:
+    - common
+    - database
+    - webserver
