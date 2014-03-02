@@ -1,0 +1,22 @@
+---
+- name: Install required packages
+  apt: pkg={{ item }} update_cache=yes
+  sudo: yes
+  with_items:
+      - python-mysqldb
+      - mysql-server
+      - mysql-client
+
+- name: Create zidisha database
+  mysql_db: name={{ database.name }} state=present
+
+- name: Add the database user
+  mysql_user: name={{ database.user }} password={{ database.user }} priv={{ database.name }}.*:ALL state=present
+
+- name: Copy the database schema into the VM
+  copy: src=zidisha.sql dest=/tmp
+
+- name: Import the database schema
+  mysql_db: name={{ database.name }} state=import target=/tmp/zidisha.sql
+  notify:
+      - Restart MySQL
