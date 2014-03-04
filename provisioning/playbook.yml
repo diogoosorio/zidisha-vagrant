@@ -10,8 +10,7 @@
         display_startup_errors: On
         error_log: /var/log/php_error.log
         date_timezone: America/New_York
-
-
+        sendmail_path: "/usr/bin/env catchmail"
     git:
         repository: "https://github.com/Zidisha/zidisha.git"
     database:
@@ -24,3 +23,4 @@
     - common
     - database
     - webserver
+    - zidisha
