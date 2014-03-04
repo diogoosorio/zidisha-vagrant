@@ -21,7 +21,7 @@
 
   roles:
     - common
-    - perlmonkey.role-mailcatcher
+    - { role: perlmonkey.role-mailcatcher, sudo: yes }
     - database
     - webserver
     - zidisha
