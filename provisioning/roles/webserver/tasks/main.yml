@@ -16,6 +16,7 @@
     - sendmail
 
 - name: Create the php.ini file
+  sudo: yes
   template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=0644
   notify: Restart Apache
 
