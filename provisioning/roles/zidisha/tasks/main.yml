@@ -1,0 +1,24 @@
+---
+- name: Clone Zidisha repository
+  git: dest=/workspace/zidisha.local repo={{ git.repository }} update=no
+
+- name: Copy the constants.php file
+  template: src=constant.php.j2 dest=/workspace/zidisha.local/library/constant.php mode=0644
+
+- name: Create the zidisha_contents directory
+  file: path=/workspace/zidisha.local/zidisha_contents state=directory mode=0777
+
+- name: Symlink the app_logs into the zidisha_contents directory
+  file: src=/var/log/zidisha.local/app_logs dest=/workspace/zidisha.local/zidisha_contents/logs state=link
+
+- name: Create the Smarty cache directory
+  file: path=/tmp/zidisha.local/smarty/{{ item }} mode=0777 state=directory
+  with_items:
+      - cache
+      - compile
+
+- name: Symlink the smarty compilation directory
+  file: src=/tmp/zidisha.local/smarty/compile dest=/workspace/zidisha.local/extlibs/smarty/templates_c state=link
+
+- name: Symlink the smarty cache directory
+  file: src=/tmp/zidisha.local/smarty/cache dest=/workspace/zidisha.local/extlibs/smarty/cache state=link
