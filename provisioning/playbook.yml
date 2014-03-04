@@ -21,6 +21,7 @@
 
   roles:
     - common
+    - perlmonkey.role-mailcatcher
     - database
     - webserver
     - zidisha
