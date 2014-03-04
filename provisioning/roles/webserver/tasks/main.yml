@@ -15,6 +15,10 @@
     - php-pear
     - sendmail
 
+- name: Create the php.ini file
+  template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=0644
+  notify: Restart Apache
+
 - name: Enable rewrite module
   sudo: yes
   command: a2enmod rewrite expires
