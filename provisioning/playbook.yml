@@ -11,6 +11,7 @@
         error_log: /var/log/php_error.log
         date_timezone: America/New_York
         sendmail_path: "/usr/bin/env catchmail"
+        sendmail_from: "dummy@zidisha.local"
     git:
         repository: "https://github.com/Zidisha/zidisha.git"
     database:
