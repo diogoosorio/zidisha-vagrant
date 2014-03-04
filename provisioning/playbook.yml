@@ -3,7 +3,15 @@
 - hosts: [local, vagrant]
   vars:
     apache:
-      hostname: zidisha.local
+        hostname: zidisha.local
+    php:
+        error_reporting: E_ALL
+        display_errors: On
+        display_startup_errors: On
+        error_log: /var/log/php_error.log
+        date_timezone: America/New_York
+        sendmail_path: "/usr/bin/env catchmail"
+        sendmail_from: "dummy@zidisha.local"
     git:
         repository: "https://github.com/Zidisha/zidisha.git"
     database:
@@ -14,5 +22,7 @@
 
   roles:
     - common
+    - { role: perlmonkey.role-mailcatcher, sudo: yes }
     - database
     - webserver
+    - zidisha
