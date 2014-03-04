@@ -12,13 +12,14 @@
   file: src=/var/log/zidisha.local/app_logs dest=/workspace/zidisha.local/zidisha_contents/logs state=link
 
 - name: Create the Smarty cache directory
-  file: path=/tmp/zidisha.local/smarty/{{ item }} mode=0777 state=directory
+  sudo: yes
+  file: path=/var/smarty/zidisha.local/{{ item }} mode=0777 state=directory recurse=yes owner=www-data group=www-data
   with_items:
       - cache
       - compile
 
 - name: Symlink the smarty compilation directory
-  file: src=/tmp/zidisha.local/smarty/compile dest=/workspace/zidisha.local/extlibs/smarty/templates_c state=link
+  file: src=/var/smarty/zidisha.local/compile dest=/workspace/zidisha.local/extlibs/smarty/templates_c state=link
 
 - name: Symlink the smarty cache directory
-  file: src=/tmp/zidisha.local/smarty/cache dest=/workspace/zidisha.local/extlibs/smarty/cache state=link
+  file: src=/var/smarty/zidisha.local/cache dest=/workspace/zidisha.local/extlibs/smarty/cache state=link
