@@ -4,6 +4,8 @@
   vars:
     apache:
         hostname: local.zidisha.org
+        user: vagrant
+        group: vagrant
     php:
         error_reporting: E_ALL
         display_errors: On

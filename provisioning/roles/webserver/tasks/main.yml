@@ -41,3 +41,33 @@
   sudo: yes
   command: a2ensite zidisha.local.conf
   notify: Restart Apache
+
+- name: Create the Apache group
+  sudo: yes
+  group: name={{ apache.group }}
+
+- name: Create the Apache user
+  sudo: yes
+  user: name={{ apache.user }} group={{ apache.group }}
+
+- name: Check the Apache group
+  register: correct_apache_group
+  command: grep -c 'APACHE_RUN_GROUP={{ apache.group }}' /etc/apache2/envvars
+  ignore_errors: yes
+
+- name: Change the Apache group
+  sudo: yes
+  command: sed -i 's/APACHE_RUN_GROUP=.*$/APACHE_RUN_GROUP={{ apache.group }}/' /etc/apache2/envvars
+  when: correct_apache_group|failed
+  notify: Restart Apache
+
+- name: Check the Apache user
+  register: correct_apache_user
+  command: grep -c 'APACHE_RUN_USER={{ apache.user }}' /etc/apache2/envvars
+  ignore_errors: yes
+
+- name: Change the Apache user
+  sudo: yes
+  command: sed -i 's/APACHE_RUN_USER=.*$/APACHE_RUN_USER={{ apache.user }}/' /etc/apache2/envvars
+  when: correct_apache_user|failed
+  notify: Restart Apache
