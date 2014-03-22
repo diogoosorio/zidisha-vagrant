@@ -9,17 +9,11 @@
   file: path=/workspace/zidisha.local/zidisha_contents state=directory mode=0777
 
 - name: Symlink the app_logs into the zidisha_contents directory
-  file: src=/var/log/zidisha.local/app_logs dest=/workspace/zidisha.local/zidisha_contents/logs state=link
+  file: path=/workspace/zidisha.local/zidisha_contents/logs state=directory mode=0775 recurse=yes owner=www-data group=vagrant
 
 - name: Create the Smarty cache directory
   sudo: yes
-  file: path=/var/smarty/zidisha.local/{{ item }} mode=0777 state=directory recurse=yes owner=www-data group=www-data
+  file: path=/workspace/zidisha.local/extlibs/smarty/{{ item }} mode=0775 state=directory recurse=yes owner=www-data group=vagrant
   with_items:
+      - templates_c
       - cache
-      - compile
-
-- name: Symlink the smarty compilation directory
-  file: src=/var/smarty/zidisha.local/compile dest=/workspace/zidisha.local/extlibs/smarty/templates_c state=link
-
-- name: Symlink the smarty cache directory
-  file: src=/var/smarty/zidisha.local/cache dest=/workspace/zidisha.local/extlibs/smarty/cache state=link
