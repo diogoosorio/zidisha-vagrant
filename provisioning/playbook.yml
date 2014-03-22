@@ -3,7 +3,7 @@
 - hosts: [local, vagrant]
   vars:
     apache:
-        hostname: zidisha.local
+        hostname: local.zidisha.org
     php:
         error_reporting: E_ALL
         display_errors: On
