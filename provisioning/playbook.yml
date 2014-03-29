@@ -10,7 +10,7 @@
         error_reporting: E_ALL
         display_errors: On
         display_startup_errors: On
-        error_log: /var/log/php_error.log
+        error_log: /workspace/log/php5/error.log
         date_timezone: America/New_York
         sendmail_path: "/usr/bin/env catchmail"
         sendmail_from: "service@zidisha.dev"
