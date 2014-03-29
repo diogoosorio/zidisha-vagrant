@@ -9,7 +9,7 @@
     - php5-dev
     - php5-mysql
     - php-apc
-    - php5-xdebug
+#    - php5-xdebug
     - php5-curl
     - php5-json
     - php-pear
