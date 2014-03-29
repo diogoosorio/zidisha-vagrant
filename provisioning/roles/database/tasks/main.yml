@@ -42,3 +42,5 @@
   mysql_db: name={{ database.name }} state=import target=/tmp/zidisha.sql
   notify:
       - Restart MySQL
+- name: Ensure mysql is running and starts on boot
+  service: name=mysql state=started enabled=true
