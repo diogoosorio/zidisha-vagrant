@@ -1,6 +1,6 @@
 ---
 
-- hosts: [local, vagrant]
+- hosts: vagrant
   vars:
     apache:
         hostname: local.zidisha.org
