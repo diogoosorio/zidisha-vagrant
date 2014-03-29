@@ -14,10 +14,14 @@
     - php5-json
     - php-pear
 
-- name: Create the php.ini file
+- name: Create the apache php.ini file
   sudo: yes
-  template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=0644
+  template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=0644 force=no
   notify: Restart Apache
+  
+- name: Create the cli php.ini file
+  sudo: yes
+  template: src=php.ini.j2 dest=/etc/php5/cli/php.ini owner=root group=root mode=0644 force=no
 
 - name: Enable rewrite module
   sudo: yes
