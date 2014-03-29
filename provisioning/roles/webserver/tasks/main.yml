@@ -37,6 +37,15 @@
     - apache2
     - php5
 
+# Remove the "Could not reliably determine the server's fully qualified domain name" message
+- name: Add ServerName
+  sudo: yes
+  lineinfile:
+    dest=/etc/apache2/apache2.conf
+    line="ServerName localhost "
+    regexp="^ServerName localhost"
+  notify: Restart Apache
+
 - name: Copy the virtualhost to the sites-available directory
   sudo: yes
   template: src=zidisha.local.conf.j2 dest=/etc/apache2/sites-available/zidisha.local.conf
