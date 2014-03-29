@@ -3,7 +3,7 @@
   git: dest=/workspace/zidisha repo={{ git.repository }} update=no
 
 - name: Copy the constants.php file
-  template: src=constant.php.j2 dest=/workspace/zidisha.local/library/constant.php mode=0644
+  template: src=../../../..{{ paths.root }}library/constant_local.php dest={{ paths.root }}library/constant.php mode=0644 force=no
 
 - name: Create the zidisha_contents directory
   file: path=/workspace/zidisha.local/zidisha_contents state=directory mode=0777
