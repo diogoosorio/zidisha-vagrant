@@ -122,11 +122,19 @@ Fire up a browser and visit - http://zidisha.dev/.
     ```
     
     This make take a while to install.
+    
     Answer `yes` if you get the following message:
     
     > The authenticity of host '192.168.90.103 (192.168.90.103)' can't be established.  
     > RSA key fingerprint is ...  
     > Are you sure you want to continue connecting (yes/no)?
+    
+    If this is not the first time you run the installation, you might see the following error:
+    
+    > fatal: [192.168.90.103] => SSH encountered an unknown error during the connection.
+    
+    The fix this, just remove the line starting with `192.168.90.103`
+    from `~/.ssh/known_hosts` and run **vagrant provision**.
 
 1. And add an entry to your **hosts** file:
    
@@ -135,6 +143,7 @@ Fire up a browser and visit - http://zidisha.dev/.
     ```
 
 1. You should be done! Fire up a browser and visit - http://zidisha.dev.
+
 
 ----
 
