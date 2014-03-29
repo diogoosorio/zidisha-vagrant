@@ -1,6 +1,6 @@
 ---
 - name: Clone Zidisha repository
-  git: dest=/workspace/zidisha.local repo={{ git.repository }} update=no
+  git: dest=/workspace/zidisha repo={{ git.repository }} update=no
 
 - name: Copy the constants.php file
   template: src=constant.php.j2 dest=/workspace/zidisha.local/library/constant.php mode=0644
