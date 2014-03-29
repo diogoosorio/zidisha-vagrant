@@ -52,7 +52,8 @@
 
 - name: Enable the virtualhost
   sudo: yes
-  command: a2ensite zidisha.local.conf
+  command: a2ensite zidisha.local.conf creates=/etc/apache2/sites-enabled/zidisha.local.conf
+  notify: Restart Apache
   notify: Restart Apache
 
 - name: Create the Apache group
