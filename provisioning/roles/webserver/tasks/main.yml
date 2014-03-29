@@ -54,6 +54,10 @@
   sudo: yes
   command: a2ensite zidisha.local.conf creates=/etc/apache2/sites-enabled/zidisha.local.conf
   notify: Restart Apache
+  
+- name: Disable the default site
+  sudo: yes
+  command: a2dissite 000-default removes=/etc/apache2/sites-enabled/000-default.conf
   notify: Restart Apache
 
 - name: Create the Apache group
