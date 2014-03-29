@@ -31,14 +31,11 @@
   command: a2enmod rewrite creates=/etc/apache2/mods-enabled/rewrite.load
   notify: Restart Apache
 
-- name: Create the logging directory
-  file: path={{ item }} owner=www-data group=www-data state=directory
-  sudo: yes
+- name: Create the log directories
+  file: path={{ paths.log }}{{ item }} state=directory mode=0777 recurse=yes
   with_items:
-      - /var/log/zidisha.local
-      - /var/log/zidisha.local/app_logs
-      - /var/log/zidisha.local/apache2
-
+    - apache2
+    - php5
 
 - name: Copy the virtualhost to the sites-available directory
   sudo: yes
