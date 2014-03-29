@@ -108,7 +108,7 @@ Fire up a browser and visit - http://zidisha.local/.
         brew install ansible
         ```
    
-      - Via the Python package manager [Pip][16]:
+     - Via the Python package manager [Pip][16]:
 
         ```bash
         sudo pip install ansible
