@@ -45,7 +45,7 @@ In my case, it would look something like this:
 - hosts: vagrant
   vars:
     apache:
-      hostname: zidisha.local
+      hostname: zidisha.dev
     git:
         repository: "git@github.com:diogoosorio/zidisha.git"
     database:
@@ -84,10 +84,10 @@ vagrant provision
 And add an entry to your **hosts** file:
 
 ```bash
-echo 'zidisha.local     192.168.90.103' | sudo tee -a /etc/hosts
+echo 'zidisha.dev     192.168.90.103' | sudo tee -a /etc/hosts
 ```
 
-Fire up a browser and visit - http://zidisha.local/.
+Fire up a browser and visit - http://zidisha.dev/.
 
 ----
 
@@ -172,10 +172,10 @@ Fire up a browser and visit - http://zidisha.local/.
 1. Open the file named **hosts** using Notepad, as an administrator and add the following line:
 
   ```no-highlight
-  192.168.90.103 zidisha.local
+  192.168.90.103 zidisha.dev
   ```
 
-1. You should be done! Fire up a browser and visit - http://zidisha.local/.
+1. You should be done! Fire up a browser and visit - http://zidisha.dev/.
 
 ----
 
