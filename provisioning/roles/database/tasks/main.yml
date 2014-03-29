@@ -15,11 +15,6 @@
   sudo: yes
   notify: Restart MySQL
 
-- name: Create zidisha database
-  mysql_db: name={{ database.name }} state=present
-
-- name: Add the database user
-  mysql_user: name={{ database.user }} password={{ database.user }} priv={{ database.name }}.*:ALL state=present
 - name: Change MySQL config
   lineinfile:
     dest=/etc/mysql/my.cnf
@@ -28,8 +23,6 @@
   sudo: yes
   notify: Restart MySQL
 
-- name: Copy the database schema into the VM
-  copy: src=zidisha.sql dest=/tmp
 - name: Change MySQL config
   lineinfile:
     dest=/etc/mysql/my.cnf
@@ -38,9 +31,5 @@
   sudo: yes
   notify: Restart MySQL
 
-- name: Import the database schema
-  mysql_db: name={{ database.name }} state=import target=/tmp/zidisha.sql
-  notify:
-      - Restart MySQL
 - name: Ensure mysql is running and starts on boot
   service: name=mysql state=started enabled=true

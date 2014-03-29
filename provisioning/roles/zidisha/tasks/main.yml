@@ -17,3 +17,10 @@
   with_items:
       - templates_c
       - cache
+
+- name: Create zidisha database
+  mysql_db: name={{ database.name }} state=present
+  notify: Import database
+
+- name: Add the database user
+  mysql_user: name={{ database.user }} password={{ database.user }} priv={{ database.name }}.*:ALL state=present     
