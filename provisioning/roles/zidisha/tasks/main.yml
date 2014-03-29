@@ -2,6 +2,9 @@
 - name: Clone Zidisha repository
   git: dest=/workspace/zidisha repo={{ git.repository }} update=no
 
+- name: Copy .htaccess
+  copy: src=../../../..{{ paths.root }}.htaccess_local dest={{ paths.root }}.htaccess force=no
+
 - name: Copy the constants.php file
   template: src=../../../..{{ paths.root }}library/constant_local.php dest={{ paths.root }}library/constant.php mode=0644 force=no
 
