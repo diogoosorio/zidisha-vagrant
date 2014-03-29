@@ -21,6 +21,11 @@
         name: zidisha
         user: zidisha
         password: zidisha
+    paths:
+        full: /workspace/zidisha/
+        root: /workspace/zidisha/
+        log: /workspace/log/
+    site_url: http://zidisha.dev/
 
   roles:
     - common
