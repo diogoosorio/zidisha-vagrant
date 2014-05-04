@@ -6,17 +6,30 @@
       - python-mysqldb
       - mysql-server
       - mysql-client
+      
+- name: Change MySQL config
+  lineinfile:
+    dest=/etc/mysql/my.cnf
+    line="collation-server = utf8_unicode_ci"
+    insertafter="^\[mysqld\]"
+  sudo: yes
+  notify: Restart MySQL
 
-- name: Create zidisha database
-  mysql_db: name={{ database.name }} state=present
+- name: Change MySQL config
+  lineinfile:
+    dest=/etc/mysql/my.cnf
+    line="init-connect = 'SET NAMES utf8'"
+    insertafter="^collation-server ="
+  sudo: yes
+  notify: Restart MySQL
 
-- name: Add the database user
-  mysql_user: name={{ database.user }} password={{ database.user }} priv={{ database.name }}.*:ALL state=present
+- name: Change MySQL config
+  lineinfile:
+    dest=/etc/mysql/my.cnf
+    line="character-set-server = utf8"
+    insertafter="^init-connect ="
+  sudo: yes
+  notify: Restart MySQL
 
-- name: Copy the database schema into the VM
-  copy: src=zidisha.sql dest=/tmp
-
-- name: Import the database schema
-  mysql_db: name={{ database.name }} state=import target=/tmp/zidisha.sql
-  notify:
-      - Restart MySQL
+- name: Ensure mysql is running and starts on boot
+  service: name=mysql state=started enabled=true

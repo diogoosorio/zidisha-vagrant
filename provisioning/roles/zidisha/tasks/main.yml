@@ -1,19 +1,29 @@
 ---
 - name: Clone Zidisha repository
-  git: dest=/workspace/zidisha.local repo={{ git.repository }} update=no
+  git: dest=/workspace/zidisha repo={{ git.repository }} update=no
+
+- name: Copy .htaccess
+  copy: src=../../../..{{ paths.root }}.htaccess_local dest={{ paths.root }}.htaccess force=no
 
 - name: Copy the constants.php file
-  template: src=constant.php.j2 dest=/workspace/zidisha.local/library/constant.php mode=0644
+  template: src=../../../..{{ paths.root }}library/constant_local.php dest={{ paths.root }}library/constant.php mode=0644 force=no
 
 - name: Create the zidisha_contents directory
-  file: path=/workspace/zidisha.local/zidisha_contents state=directory mode=0777
+  file: path={{ paths.root }}zidisha_contents state=directory mode=0777 force=no
 
-- name: Symlink the app_logs into the zidisha_contents directory
-  file: path=/workspace/zidisha.local/zidisha_contents/logs state=directory mode=0775 recurse=yes owner=www-data group=vagrant
+- name: Create the log directory
+  file: path={{ paths.log }} state=directory mode=0777 force=no
 
 - name: Create the Smarty cache directory
   sudo: yes
-  file: path=/workspace/zidisha.local/extlibs/smarty/{{ item }} mode=0775 state=directory recurse=yes owner=www-data group=vagrant
+  file: path={{ paths.root }}extlibs/smarty/{{ item }} mode=0775 state=directory recurse=yes owner=www-data group=vagrant force=no
   with_items:
       - templates_c
       - cache
+
+- name: Create zidisha database
+  mysql_db: name={{ database.name }} state=present
+  notify: Import database
+
+- name: Add the database user
+  mysql_user: name={{ database.user }} password={{ database.user }} priv={{ database.name }}.*:ALL state=present     
