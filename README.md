@@ -84,7 +84,7 @@ vagrant provision
 And add an entry to your **hosts** file:
 
 ```bash
-echo 'zidisha.dev     192.168.90.103' | sudo tee -a /etc/hosts
+echo '192.168.90.103     zidisha.dev' | sudo tee -a /etc/hosts
 ```
 
 Fire up a browser and visit - http://zidisha.dev/.
