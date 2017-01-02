@@ -1,5 +1,5 @@
 #!/bin/bash
-add-apt-repository -y ppa:rquillo/ansible
-apt-get update && apt-get -y install ansible cowsay
+apt-add-repository ppa:rquillo/ansible
+apt-get update && apt-get -y install ansible
 
-ansible-playbook playbook.yml -c local -l local -i hosts
+ansible-playbook -i /provisioning/hosts -l vagrant -c local /provisioning/playbook.yml

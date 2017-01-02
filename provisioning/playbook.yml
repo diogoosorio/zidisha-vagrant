@@ -1,17 +1,19 @@
 ---
 
-- hosts: [local, vagrant]
+- hosts: vagrant
   vars:
     apache:
-        hostname: zidisha.local
+        hostname: zidisha.dev
+        user: vagrant
+        group: vagrant
     php:
         error_reporting: E_ALL
         display_errors: On
         display_startup_errors: On
-        error_log: /var/log/php_error.log
+        error_log: /workspace/log/php5/error.log
         date_timezone: America/New_York
         sendmail_path: "/usr/bin/env catchmail"
-        sendmail_from: "dummy@zidisha.local"
+        sendmail_from: "service@zidisha.dev"
     git:
         repository: "https://github.com/Zidisha/zidisha.git"
     database:
@@ -19,6 +21,11 @@
         name: zidisha
         user: zidisha
         password: zidisha
+    paths:
+        full: /workspace/zidisha/
+        root: /workspace/zidisha/
+        log: /workspace/log/
+    site_url: http://zidisha.dev/
 
   roles:
     - common

@@ -1,2 +1,11 @@
 ---
 # handlers file for role-mailcatcher
+- name: Start Mailcatcher on boot
+  command: update-rc.d mailcatcher defaults
+
+- name: Stop Mailcatcher
+  command: pkill mailcatcher
+  ignore_errors: yes
+
+- name: Start Mailcatcher
+  command: /etc/init.d/mailcatcher

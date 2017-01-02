@@ -1,0 +1,3 @@
+---
+- name: Import database
+  mysql_db: name={{ database.name }} state=import target={{ paths.root }}dev/zidisha.sql

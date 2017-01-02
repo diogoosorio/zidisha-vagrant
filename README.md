@@ -45,7 +45,7 @@ In my case, it would look something like this:
 - hosts: vagrant
   vars:
     apache:
-      hostname: zidisha.local
+      hostname: zidisha.dev
     git:
         repository: "git@github.com:diogoosorio/zidisha.git"
     database:
@@ -84,20 +84,66 @@ vagrant provision
 And add an entry to your **hosts** file:
 
 ```bash
-echo 'zidisha.local     192.168.90.103' | sudo tee -a /etc/hosts
+echo '192.168.90.103     zidisha.dev' | sudo tee -a /etc/hosts
 ```
 
-Fire up a browser and visit - http://zidisha.local/.
+Fire up a browser and visit - http://zidisha.dev/.
 
 ----
 
 ### Mac OS X
 
-Both [Ansible][3] and [Vagrant][4] should work under Mac OS. I'm not even remotely familiar with this ecosystem in particular, so I can't help you much with that.
+1. Download and install [Virtualbox][13]
+1. Download and install [Vagrant][14]
+1. Install the vagrant plugin [vagrant-vbguest][15]:
 
-Here's a [quick reference][7] that seems to tackle the challenge. If you have a Mac feel free to help out documenting the process. :)
+    ```bash
+    vagrant plugin install vagrant-vbguest
+    ```
+ 
+1. Install [Ansible][3]:
+     - Via [Homebrew][7]:
 
-**If you have any trouble, get [Virtualbox](http://virtualbox.org/) and [Vagrant](http://vagrantup.com) running on your machine and take a look at Window's instructions.**
+        ```bash
+        brew install ansible
+        ```
+   
+     - Via the Python package manager [Pip][16]:
+
+        ```bash
+        sudo pip install ansible
+        ```
+
+1. Clone this repository and perform a **vagrant up**:
+
+    ```bash
+    git clone https://github.com/diogoosorio/zidisha-vagrant.git && cd zidisha-vagrant
+    vagrant up
+    ```
+    
+    This make take a while to install.
+    
+    Answer `yes` if you get the following message:
+    
+    > The authenticity of host '192.168.90.103 (192.168.90.103)' can't be established.  
+    > RSA key fingerprint is ...  
+    > Are you sure you want to continue connecting (yes/no)?
+    
+    If this is not the first time you run the installation, you might see the following error:
+    
+    > fatal: [192.168.90.103] => SSH encountered an unknown error during the connection.
+    
+    The fix this, just remove the line starting with `192.168.90.103`
+    from `~/.ssh/known_hosts` and run **vagrant provision**.
+
+1. And add an entry to your **hosts** file:
+   
+    ```bash
+    echo '192.168.90.103  zidisha.dev' | sudo tee -a /etc/hosts
+    ```
+
+1. You should be done! Fire up a browser and visit - http://zidisha.dev.
+
 
 ----
 
@@ -135,10 +181,10 @@ Here's a [quick reference][7] that seems to tackle the challenge. If you have a 
 1. Open the file named **hosts** using Notepad, as an administrator and add the following line:
 
   ```no-highlight
-  192.168.90.103 zidisha.local
+  192.168.90.103 zidisha.dev
   ```
 
-1. You should be done! Fire up a browser and visit - http://zidisha.local/.
+1. You should be done! Fire up a browser and visit - http://zidisha.dev/.
 
 ----
 
@@ -159,9 +205,13 @@ This project is licensed under the [Apache License 2.0][11]. Please take the tim
 [4]: https://github.com/Zidisha/zidisha                           "Zidisha Github"
 [5]: http://virtualbox.org/                                       "Virtualbox"
 [6]: https://wiki.debian.org/Apt                                  "APT"
-[7]: https://weluse.de/blog/installing-ansible-on-os-x.html       "Installing Ansible on Mac OS X"
+[7]: http://brew.sh/                                              "Homebrew"
 [8]: https://help.github.com/articles/fork-a-repo                 "Github Fork"
 [9]: provisioning/playbook.yml                                    "Playbook.yml"
 [10]: https://help.github.com/articles/using-ssh-agent-forwarding "Using ssh-agent forwarding"
 [11]: License.md                                                  "Apache License 2.0"
 [12]: https://github.com/Zidisha/zidisha/blob/master/LICENSE      "Zidisha License"
+[13]: https://www.virtualbox.org/wiki/Downloads                   "Download VirtualBox"
+[14]: http://www.vagrantup.com/downloads                          "Download Vagrant"
+[15]: https://github.com/dotless-de/vagrant-vbguest               "vagrant-vbguest"
+[16]: http://pip.readthedocs.org/en/latest/index.html             "pip"
